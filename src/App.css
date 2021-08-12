@@ -1,0 +1,9 @@
+.table_coin_info {
+    display: flex;
+    align-items: center;
+}
+
+.table_coin_info > * {
+    margin-right: .5rem;
+}
+
