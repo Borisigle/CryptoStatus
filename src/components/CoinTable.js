@@ -13,15 +13,13 @@ import {
   Select,
 } from '@chakra-ui/react';
 import { TiArrowSortedUp, TiArrowSortedDown } from 'react-icons/ti';
-import { LineChart, Line, ResponsiveContainer, YAxis } from 'recharts';
 import fetchData from './fetchData';
 import { RiArrowRightSFill, RiArrowLeftSFill } from 'react-icons/ri';
 
 function CoinTable({ coins, percentage, page, setPage, rows, setRows }) {
-
   const handleRow = () => {
-    console.log('hola')
-  }
+    console.log('hola');
+  };
 
   const nextPage = () => {
     setPage(page + 1);
@@ -92,9 +90,17 @@ function CoinTable({ coins, percentage, page, setPage, rows, setRows }) {
       </Table>
       <div className="container_pagination_buttons">
         <p>Rows per page</p>
-        <Select size='sm' variant="flushed" width='3.4rem' borderBottom='none' marginTop='2.5px' marginLeft='.5rem'>
-          <option value="20" onSelect={() => console.log('anda')} >20</option>
-          <option value="100" onSelect={() => console.log('anda2')}>100</option>
+        <Select
+          onChange={e => setRows(e.target.value)}
+          size="sm"
+          variant="flushed"
+          width="3.4rem"
+          borderBottom="none"
+          marginTop="2.5px"
+          marginLeft=".5rem"
+        >
+          <option value="20">20</option>
+          <option value="100">100</option>
           <option value="300">300</option>
         </Select>
         <RiArrowLeftSFill

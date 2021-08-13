@@ -14,6 +14,7 @@ import fetchData from './components/fetchData';
 import Table from './components/CoinTable';
 import './App.css';
 import { generalTheme } from './components/styles/generalTheme';
+import CoinGraph from './components/CoinGraph';
 
 function App() {
   const [coins, setCoins] = useState([]);
@@ -29,7 +30,9 @@ function App() {
     <ChakraProvider theme={generalTheme}>
       <h1>CoinStatus</h1>
       <Table coins={coins} page={page} setPage={setPage} rows={rows} setRows={setRows}/>
+      <CoinGraph />
     </ChakraProvider>
+    
   );
 }
 
