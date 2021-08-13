@@ -10,21 +10,25 @@ import {
   theme,
 } from '@chakra-ui/react';
 import { ColorModeSwitcher } from './ColorModeSwitcher';
-import fetchData from './components/fetchData'
+import fetchData from './components/fetchData';
 import Table from './components/CoinTable';
-import './App.css'
+import './App.css';
+import { generalTheme } from './components/styles/generalTheme';
 
 function App() {
   const [coins, setCoins] = useState([]);
-  const [filters, setFilters] = useState({})
+  const [filters, setFilters] = useState({});
+  const [page, setPage] = useState(1)
+  const [rows, setRows] = useState(20)
 
   useEffect(() => {
-    fetchData(filters).then(coins => setCoins(coins))
-  }, [filters]);
+    fetchData(rows, page).then(coins => setCoins(coins));
+  }, [rows, page]);
 
   return (
-    <ChakraProvider theme={theme}>
-      <Table coins={coins} />
+    <ChakraProvider theme={generalTheme}>
+      <h1>CoinStatus</h1>
+      <Table coins={coins} page={page} setPage={setPage} rows={rows} setRows={setRows}/>
     </ChakraProvider>
   );
 }
