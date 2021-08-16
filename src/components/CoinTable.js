@@ -16,7 +16,7 @@ import { TiArrowSortedUp, TiArrowSortedDown } from 'react-icons/ti';
 import fetchData from './fetchData';
 import { RiArrowRightSFill, RiArrowLeftSFill } from 'react-icons/ri';
 
-function CoinTable({ coins, percentage, page, setPage, rows, setRows }) {
+function CoinTable({ coins, percentage, page, setPage, rows, setRows, setCoinGraph }) {
   const handleRow = () => {
     console.log('hola');
   };
@@ -30,6 +30,12 @@ function CoinTable({ coins, percentage, page, setPage, rows, setRows }) {
       setPage(page - 1);
     }
   };
+
+  const coinInfo = (name, data) => {
+    setCoinGraph([{coin : name,
+    sparklineIn7: data
+    }])
+  }
 
   const trendPrice = percentage => {
     if (percentage >= 0) {
@@ -63,7 +69,7 @@ function CoinTable({ coins, percentage, page, setPage, rows, setRows }) {
         </Thead>
         <Tbody>
           {coins.map(coin => (
-            <Tr
+            <Tr onClick={() => coinInfo(coin.name, coin.sparkline_in_7d.price)}
               cursor="pointer"
               _hover={{
                 bg: '#0D0D0D',

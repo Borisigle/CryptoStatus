@@ -21,6 +21,7 @@ function App() {
   const [filters, setFilters] = useState({});
   const [page, setPage] = useState(1)
   const [rows, setRows] = useState(20)
+  const [coinGraph, setCoinGraph] = useState('')
 
   useEffect(() => {
     fetchData(rows, page).then(coins => setCoins(coins));
@@ -29,8 +30,8 @@ function App() {
   return (
     <ChakraProvider theme={generalTheme}>
       <h1>CoinStatus</h1>
-      <Table coins={coins} page={page} setPage={setPage} rows={rows} setRows={setRows}/>
-      <CoinGraph />
+      <Table coins={coins} page={page} setPage={setPage} rows={rows} setRows={setRows} setCoinGraph={setCoinGraph} />
+      {coinGraph ? <CoinGraph coinGraph={coinGraph} /> : ''}
     </ChakraProvider>
     
   );
