@@ -1,24 +1,24 @@
-import React, {useState, useEffect} from 'react';
-import { LineChart, Line, ResponsiveContainer } from 'recharts';
+import React, { useState, useEffect } from 'react';
+import { infoCoin } from './Functions';
+import { Redirect } from 'react-router-dom';
 
-function CoinGraph({coinGraph}) {
+function CoinGraph({
+  match: {
+    params: { id },
+  },
+}) {
+  const [coinToGraph, setCoinToGraph] = useState('');
 
-  const [graph, setGraph] = useState('')
-  console.log(coinGraph)
-  
   useEffect(() => {
-    setGraph(coinGraph[0].sparklineIn7.map(value => {return {total: value}}))
-    console.log(graph)
-  }, [coinGraph])
+    infoCoin().then(data => setCoinToGraph(data));
+  }, []);
 
-  return (
-    <>
-    <p>{coinGraph[0].coin}</p>
-    <LineChart width={300} height={100} data={graph}>
-      <Line type="monotone" dataKey="total" stroke="#8884d8" strokeWidth={2} />
-    </LineChart>
-    </>
-  );
+  const goodId = parseInt(id);
+
+  if (!goodId) {
+    return <Redirect to={{ pathname: '/404' }} />;
+  }
+  return <h1 style={{ color: '#E5E5E5' }}>{coinToGraph.id} </h1>;
 }
 
 export default CoinGraph;
