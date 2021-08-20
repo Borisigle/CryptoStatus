@@ -21,6 +21,7 @@ function App() {
   const [coins, setCoins] = useState([]);
   const [page, setPage] = useState(1);
   const [rows, setRows] = useState(20);
+  const [coinId, setCoinId] = useState('cardano');
 
   useEffect(() => {
     fetchData(rows, page).then(coins => setCoins(coins));
@@ -38,10 +39,14 @@ function App() {
               page={page}
               setPage={setPage}
               setRows={setRows}
+              setCoinId={setCoinId}
             />
           )}
         />
-        <Route path="/info/:id" render={props => <CoinGraph {...props} />} />
+        <Route
+          path="/info/:id"
+          render={props => <CoinGraph {...props} coinId={coinId} />}
+        />
         <Route path="/404" render={props => <PageNotFound {...props} />} />
       </ChakraProvider>
     </Router>

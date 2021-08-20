@@ -14,7 +14,7 @@ const fetchData = async (rows, page) => {
 const infoCoin = async coinId => {
   try {
     const res = await axios.get(
-      'https://api.coingecko.com/api/v3/coins/bitcoin?tickers=false&market_data=true&community_data=false&developer_data=false&sparkline=true'
+      `https://api.coingecko.com/api/v3/coins/${coinId}?tickers=false&market_data=true&community_data=false&developer_data=false&sparkline=true`
     );
     return res.data;
   } catch (error) {

@@ -6,15 +6,16 @@ function CoinGraph({
   match: {
     params: { id },
   },
+  coinId,
 }) {
   const [coinToGraph, setCoinToGraph] = useState('');
   useEffect(() => {
-    infoCoin().then(data => setCoinToGraph(data));
-  }, []);
+    infoCoin(coinId).then(data => setCoinToGraph(data));
+  }, [coinId]);
 
   const goodId = id;
 
-  if (!goodId) {
+  if (goodId !== id) {
     return <Redirect to={{ pathname: '/404' }} />;
   }
 

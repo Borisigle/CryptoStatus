@@ -12,6 +12,7 @@ import {
 } from '@chakra-ui/react';
 import { TiArrowSortedUp, TiArrowSortedDown } from 'react-icons/ti';
 import { RiArrowRightSFill, RiArrowLeftSFill } from 'react-icons/ri';
+import { Link, Redirect } from 'react-router-dom';
 
 function CoinTable({ coins, page, setPage, setRows, setCoinId }) {
   const trendPrice = percentage => {
@@ -32,6 +33,11 @@ function CoinTable({ coins, page, setPage, setRows, setCoinId }) {
     }
   };
 
+  const handleOnClick = id => {
+    setCoinId(id);
+    console.log(2);
+  };
+
   return (
     <>
       <h1>CoinStatus</h1>
@@ -49,7 +55,7 @@ function CoinTable({ coins, page, setPage, setRows, setCoinId }) {
           <Tbody>
             {coins.map(coin => (
               <Tr
-                onClick={() => setCoinId(coin.id)}
+                onClick={() => handleOnClick(coin.id)}
                 cursor="pointer"
                 _hover={{
                   bg: '#0D0D0D',
