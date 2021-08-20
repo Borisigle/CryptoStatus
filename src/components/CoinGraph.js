@@ -8,16 +8,16 @@ function CoinGraph({
   },
 }) {
   const [coinToGraph, setCoinToGraph] = useState('');
-
   useEffect(() => {
     infoCoin().then(data => setCoinToGraph(data));
   }, []);
 
-  const goodId = parseInt(id);
+  const goodId = id;
 
   if (!goodId) {
     return <Redirect to={{ pathname: '/404' }} />;
   }
+
   return <h1 style={{ color: '#E5E5E5' }}>{coinToGraph.id} </h1>;
 }
 
