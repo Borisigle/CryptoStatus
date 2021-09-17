@@ -13,8 +13,11 @@ import {
 import { TiArrowSortedUp, TiArrowSortedDown } from 'react-icons/ti';
 import { RiArrowRightSFill, RiArrowLeftSFill } from 'react-icons/ri';
 import { Link, Redirect } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 function CoinTable({ coins, page, setPage, setRows, setCoinId }) {
+  let history = useHistory();
+
   const trendPrice = percentage => {
     if (percentage >= 0) {
       return (
@@ -33,9 +36,8 @@ function CoinTable({ coins, page, setPage, setRows, setCoinId }) {
     }
   };
 
-  const handleOnClick = id => {
-    setCoinId(id);
-    console.log(2);
+  const handleOnClick = symbol => {
+    history.push(`/info/${symbol}`);
   };
 
   return (
@@ -55,7 +57,7 @@ function CoinTable({ coins, page, setPage, setRows, setCoinId }) {
           <Tbody>
             {coins.map(coin => (
               <Tr
-                onClick={() => handleOnClick(coin.id)}
+                onClick={() => handleOnClick(coin.symbol)}
                 cursor="pointer"
                 _hover={{
                   bg: '#0D0D0D',
@@ -110,5 +112,3 @@ function CoinTable({ coins, page, setPage, setRows, setCoinId }) {
 }
 
 export default CoinTable;
-
-//coin.sparkline_in_7d.price.map(value => {return {total : value}})}

@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const fetchData = async (rows, page) => {
+export const fetchData = async (rows, page) => {
   try {
     const res = await axios.get(
       `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=${rows}&page=${page}&sparkline=true`
@@ -11,14 +11,14 @@ const fetchData = async (rows, page) => {
   }
 };
 
-const infoCoin = async coinId => {
+export const fetchCandleData = async coinId => {
+  console.log(coinId);
   try {
     const res = await axios.get(
-      `https://api.coingecko.com/api/v3/coins/${coinId}?tickers=false&market_data=true&community_data=false&developer_data=false&sparkline=true`
+      `https://api.coingecko.com/api/v3/coins/${coinId}/ohlc?vs_currency=usd&days=1`
     );
     return res.data;
   } catch (error) {
     console.log(error);
   }
 };
-export { fetchData, infoCoin };

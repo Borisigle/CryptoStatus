@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { infoCoin } from './Functions';
 import { Redirect } from 'react-router-dom';
+import { fetchCandleData } from '../services';
+import TradingViewWidget, { Themes } from 'react-tradingview-widget';
 
 function CoinGraph({
   match: {
@@ -8,18 +9,44 @@ function CoinGraph({
   },
   coinId,
 }) {
-  const [coinToGraph, setCoinToGraph] = useState('');
-  useEffect(() => {
-    infoCoin(coinId).then(data => setCoinToGraph(data));
-  }, [coinId]);
+  // const [data, setData] = useState([]);
 
-  const goodId = id;
+  // useEffect(() => {
+  //   fetchCandleData(id).then(response =>
+  //     setData(
+  //       response.map(candle => {
+  //         return { x: new Date(candle[0]), y: candle.slice(1) };
+  //       })
+  //     )
+  //   );
+  // }, []);
 
-  if (goodId !== id) {
-    return <Redirect to={{ pathname: '/404' }} />;
-  }
+  // const dataSet = {
+  //   series: [{ data: data }],
+  //   options: {
+  //     chart: {
+  //       type: 'candlestick',
+  //       height: 350,
+  //     },
+  //     title: {
+  //       text: 'CandleStick Chart',
+  //       align: 'left',
+  //     },
+  //     xaxis: {
+  //       type: 'datetime',
+  //     },
+  //     yaxis: {
+  //       tooltip: {
+  //         enabled: true,
+  //       },
+  //     },
+  //   },
+  // };
+  console.log(id);
 
-  return <h1 style={{ color: '#E5E5E5' }}>{coinToGraph.id} </h1>;
+  return (
+    <TradingViewWidget theme={Themes.DARK} symbol={`${id.toUpperCase()}USD`} />
+  );
 }
 
 export default CoinGraph;
