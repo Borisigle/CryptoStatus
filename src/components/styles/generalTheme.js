@@ -4,9 +4,9 @@ export const generalTheme = extendTheme({
   styles: {
     global: {
       body: {
-        bg: '#000000',
+        bg: '#171b26',
         fontFamily: 'Roboto',
-        textAlign: 'center'
+        textAlign: 'center',
       },
       Table: {
         color: '#E5E5E5',

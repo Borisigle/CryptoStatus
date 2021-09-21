@@ -11,12 +11,12 @@ export const fetchData = async (rows, page) => {
   }
 };
 
-export const fetchCandleData = async coinId => {
-  console.log(coinId);
+export const fetchCoinData = async id => {
   try {
     const res = await axios.get(
-      `https://api.coingecko.com/api/v3/coins/${coinId}/ohlc?vs_currency=usd&days=1`
+      `https://api.coingecko.com/api/v3/coins/${id}?tickers=true&market_data=true&community_data=false&developer_data=false&sparkline=false`
     );
+    console.log(res.data);
     return res.data;
   } catch (error) {
     console.log(error);

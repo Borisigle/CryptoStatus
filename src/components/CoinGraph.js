@@ -1,51 +1,51 @@
 import React, { useState, useEffect } from 'react';
-import { Redirect } from 'react-router-dom';
-import { fetchCandleData } from '../services';
+import { fetchCoinData } from '../services';
 import TradingViewWidget, { Themes } from 'react-tradingview-widget';
+import {
+  Text,
+  Box,
+  Flex,
+  VStack,
+  Table,
+  Thead,
+  Tbody,
+  Tfoot,
+  Tr,
+  Th,
+  Td,
+  TableCaption,
+} from '@chakra-ui/react';
 
 function CoinGraph({
   match: {
     params: { id },
   },
-  coinId,
+  coins,
 }) {
-  // const [data, setData] = useState([]);
+  const [coin, setCoin] = useState();
 
-  // useEffect(() => {
-  //   fetchCandleData(id).then(response =>
-  //     setData(
-  //       response.map(candle => {
-  //         return { x: new Date(candle[0]), y: candle.slice(1) };
-  //       })
-  //     )
-  //   );
-  // }, []);
+  useEffect(() => {
+    fetchCoinData(id).then(coin => setCoin(coin));
+  }, []);
 
-  // const dataSet = {
-  //   series: [{ data: data }],
-  //   options: {
-  //     chart: {
-  //       type: 'candlestick',
-  //       height: 350,
-  //     },
-  //     title: {
-  //       text: 'CandleStick Chart',
-  //       align: 'left',
-  //     },
-  //     xaxis: {
-  //       type: 'datetime',
-  //     },
-  //     yaxis: {
-  //       tooltip: {
-  //         enabled: true,
-  //       },
-  //     },
-  //   },
-  // };
-  console.log(id);
-
+  console.log(coin);
   return (
-    <TradingViewWidget theme={Themes.DARK} symbol={`${id.toUpperCase()}USD`} />
+    <>
+      {coin !== undefined && (
+        <Box>
+          <Text py={4} color="white">
+            {coin.name} ({coin.symbol.toUpperCase()}) Price Chart
+          </Text>
+
+          <TradingViewWidget
+            theme={Themes.DARK}
+            symbol={`${coin.symbol.toUpperCase()}USD`}
+            width="60rem"
+            height="35rem"
+          />
+        </Box>
+      )}
+    </>
   );
 }
 

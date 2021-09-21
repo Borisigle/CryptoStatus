@@ -36,8 +36,8 @@ function CoinTable({ coins, page, setPage, setRows, setCoinId }) {
     }
   };
 
-  const handleOnClick = symbol => {
-    history.push(`/info/${symbol}`);
+  const handleOnClick = name => {
+    history.push(`/info/${name.toLowerCase()}`);
   };
 
   return (
@@ -51,13 +51,13 @@ function CoinTable({ coins, page, setPage, setRows, setCoinId }) {
               <Th>Name</Th>
               <Th>24 Change</Th>
               <Th>Price</Th>
-              <Th>Price graph</Th>
+              <Th>Comerce Volume</Th>
             </Tr>
           </Thead>
           <Tbody>
             {coins.map(coin => (
               <Tr
-                onClick={() => handleOnClick(coin.symbol)}
+                onClick={() => handleOnClick(coin.name)}
                 cursor="pointer"
                 _hover={{
                   bg: '#0D0D0D',
@@ -77,7 +77,7 @@ function CoinTable({ coins, page, setPage, setRows, setCoinId }) {
                 </Td>
                 <Td>{trendPrice(coin.price_change_percentage_24h)}</Td>
                 <Td>${coin.current_price} </Td>
-                <Td></Td>
+                <Td>${coin.total_volume} </Td>
               </Tr>
             ))}
           </Tbody>
