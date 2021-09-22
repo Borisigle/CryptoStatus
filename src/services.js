@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { RiArrowRightSFill, RiArrowLeftSFill } from 'react-icons/ri';
 
 export const fetchData = async (rows, page) => {
   try {
@@ -20,5 +21,23 @@ export const fetchCoinData = async id => {
     return res.data;
   } catch (error) {
     console.log(error);
+  }
+};
+
+export const trendPrice = percentage => {
+  if (percentage >= 0) {
+    return (
+      <div className="table_coin_info" style={{ color: '#32E25A' }}>
+        <TiArrowSortedUp />
+        <span>{percentage.toFixed(2)}%</span>
+      </div>
+    );
+  } else {
+    return (
+      <div className="table_coin_info" style={{ color: '#FF3535' }}>
+        <TiArrowSortedDown />
+        <span>{percentage.toFixed(2)}%</span>
+      </div>
+    );
   }
 };

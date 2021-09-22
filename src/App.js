@@ -8,7 +8,7 @@ import { generalTheme } from './components/styles/generalTheme';
 import CoinTable from './components/CoinTable';
 import CoinGraph from './components/CoinGraph';
 import PageNotFound from './components/PageNotFound';
-import { ChakraProvider } from '@chakra-ui/react';
+import { ChakraProvider, Text } from '@chakra-ui/react';
 
 function App() {
   const [coins, setCoins] = useState([]);

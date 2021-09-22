@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  Box,
   Table,
   Thead,
   Tbody,
@@ -42,8 +43,10 @@ function CoinTable({ coins, page, setPage, setRows, setCoinId }) {
 
   return (
     <>
-      <h1>CoinStatus</h1>
-      <div className="table_coins_container">
+      <Text color="white" fontSize="2xl" mt="1rem">
+        CoinStatus
+      </Text>
+      <Box w="70%" m="auto" mt="3rem">
         <Table variant="simple" size="sm" colorScheme="whiteAlpha">
           <Thead>
             <Tr>
@@ -106,7 +109,7 @@ function CoinTable({ coins, page, setPage, setRows, setCoinId }) {
             onClick={() => setPage(page + 1)}
           />
         </div>
-      </div>
+      </Box>
     </>
   );
 }

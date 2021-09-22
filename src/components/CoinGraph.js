@@ -4,7 +4,9 @@ import TradingViewWidget, { Themes } from 'react-tradingview-widget';
 import {
   Text,
   Box,
+  Image,
   Flex,
+  HStack,
   VStack,
   Table,
   Thead,
@@ -33,9 +35,27 @@ function CoinGraph({
     <>
       {coin !== undefined && (
         <Box>
-          <Text py={4} color="white">
-            {coin.name} ({coin.symbol.toUpperCase()}) Price Chart
-          </Text>
+          <HStack justifyContent="center">
+            <Image boxSize="2rem" src={coin.image.thumb} />
+            <Text py={4} color="white">
+              {coin.name} ({coin.symbol.toUpperCase()}) Price Chart
+            </Text>
+            <Text
+              h="17px"
+              w="20px"
+              bg="orange"
+              fontSize="xs"
+              borderRadius="2px"
+            >
+              #{coin.market_cap_rank}
+            </Text>
+          </HStack>
+          <HStack>
+            <Text color="white" fontSize="2xl">
+              ${coin.market_data.current_price.usd}
+            </Text>
+            <Text>{coin.market_data.price_change_percentage_24h} </Text>
+          </HStack>
 
           <TradingViewWidget
             theme={Themes.DARK}
